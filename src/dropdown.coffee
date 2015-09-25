@@ -31,7 +31,8 @@ module.exports = class Dropdown extends React.Component
             <ListItem
               key = {index}
               item = { item }
-              whenItemClicked={@handleItemClick}
+              whenItemClicked = {@handleItemClick}
+              className = {if @state.itemTitle == item then "active" else "" }
             />
         }
       </ul>

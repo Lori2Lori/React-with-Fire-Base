@@ -6,4 +6,7 @@ module.exports = class ListItem extends React.Component
     @props.whenItemClicked @props.item
 
   render: ->
-    return <li><a onClick=@handleClick>{@props.item}</a></li>
+    console.log @props
+    <li className={@props.className}>
+      <a onClick=@handleClick>{@props.item}</a>
+    </li>
