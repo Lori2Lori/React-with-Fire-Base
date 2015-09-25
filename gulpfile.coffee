@@ -6,6 +6,25 @@ reactify    = require 'coffee-reactify'
 del         = require 'del'
 stylus      = require 'gulp-stylus'
 webserver   = require 'gulp-webserver'
+notifier    = require 'node-notifier'
+
+notify = (error) =>
+  message = 'In: '
+  title = 'Error: '
+
+  if error.description
+    title += error.description
+  else if error.message
+    title += error.message
+
+  if error.filename
+    file = error.filename.split('/')
+    message += file[file.length-1]
+
+  if error.lineNumber
+    message += '\nOn Line: ' + error.lineNumber;
+
+  notifier.notify title: title, message: message
 
 gulp.task 'assets', =>
   gulp
@@ -24,7 +43,7 @@ gulp.task 'frontend', =>
 
   bundler
     .bundle()
-    .on 'error', console.log.bind(console, 'Browserify error')
+    .on 'error', notify
     .pipe source 'app.js'
     .pipe gulp.dest './build'
 

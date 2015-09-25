@@ -1,5 +1,5 @@
 {
-  "name": "dropdown",
+  "name": "fire-base",
   "version": "0.0.0",
   "description": "",
   "main": "build/index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Lori2Lori/dropdown.git"
+    "url": "https://github.com/Lori2Lori/fire-base.git"
   },
   "author": "Dorota Cieślińska (http://lori2lori.rocks)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Lori2Lori/dropdown/issues"
+    "url": "https://github.com/Lori2Lori/fire-base/issues"
   },
-  "homepage": "https://github.com/Lori2Lori/dropdown",
+  "homepage": "https://github.com/Lori2Lori/fire-base",
   "devDependencies": {
     "browserify": "^11.1.0",
     "coffee-reactify": "^4.0.0",
@@ -28,6 +28,7 @@
     "gulp-notify": "^2.2.0",
     "gulp-stylus": "^2.0.7",
     "gulp-webserver": "^0.9.1",
+    "node-notifier": "^4.3.1",
     "through2": "^2.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.4.0"

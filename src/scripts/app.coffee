@@ -1,15 +1,11 @@
 React = require 'react'
 RDOM = require 'react-dom'
-Dropdown = require './dropdown'
 
-options =
-  title : 'Choose a dessert PLEASE' #Description on the button to open dropdown menu
-  items : [ #List of items to show in the dropdown
-    "Pie"
-    "Coconut"
-    "Apple"
-    "Kitten"
-  ]
+class Hello extends React.Component
+  render: ->
+    <h1 className="red">
+      Hello!
+    </h1>
 
-element = React.createElement Dropdown, options
+element = React.createElement Hello
 RDOM.render element, document.querySelector '.container'
