@@ -11,15 +11,16 @@ module.exports = class Dropdown extends React.Component
     @state = open : false
 
   handleItemClick: (item) =>
-    console.log item
+    @setState
+      open : false,
+      itemTitle : item
 
   render: ->
-    console.log "render"
     <div className = "dropdown">
       <Button
         whenClicked = { @handleClick }
         className   = "btn-default"
-        title       = { @props.title }
+        title       = { @state.itemTitle or @props.title }
         subTitleClassName = "caret"
       />
       <ul className = {
