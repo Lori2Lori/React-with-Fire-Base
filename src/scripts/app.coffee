@@ -3,7 +3,7 @@ RDOM = require 'react-dom'
 Dropdown = require './dropdown'
 
 options =
-  title : 'Choose a dessert' #Description on the button to open dropdown menu
+  title : 'Choose a dessert PLEASE' #Description on the button to open dropdown menu
   items : [ #List of items to show in the dropdown
     "Pie"
     "Coconut"

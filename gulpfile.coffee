@@ -4,6 +4,8 @@ browserify  = require 'browserify' # Which part of code depends on the other par
 watchify    = require 'watchify' # Automatically reload code.
 reactify    = require 'coffee-reactify'
 del         = require 'del'
+stylus      = require 'gulp-stylus'
+webserver   = require 'gulp-webserver'
 
 gulp.task 'assets', =>
   gulp
@@ -12,7 +14,7 @@ gulp.task 'assets', =>
 
 gulp.task 'frontend', =>
   bundler = browserify
-    entries: ['./src/app.coffee']
+    entries: ['./src/scripts/app.coffee']
     transform: [reactify]
     extensions: ['.coffee']
     debug: true
@@ -26,27 +28,12 @@ gulp.task 'frontend', =>
     .pipe source 'app.js'
     .pipe gulp.dest './build'
 
-
-  # bundler = watchify browserify
-  #   entries: ['./src/app.coffee']
-  #   transform: [reactify]
-  #   extensions: ['.coffee']
-  #   debug: true
-  #   cache: {}
-  #   packageCache: {}
-  #   fullPaths: true
-  #
-  # build = (file) =>
-  #   if file? then console.log "Recompiling #{file}"
-  #   return bundler
-  #     .bundle()
-  #     .on 'error', console.log.bind(console, 'Browserify error')
-  #     .pipe source 'main.js'
-  #     .pipe gulp.dest './build'
-  #
-  # do build
-  # bundler.on 'update', build
-
+gulp.task 'css', ->
+  #Create index.css file from index.styl
+  gulp
+    .src 'src/style/index.styl'
+    .pipe stylus()
+    .pipe gulp.dest 'build/'
 gulp.task 'clean', (done) ->
   del 'build/**/*', done
 
@@ -55,6 +42,7 @@ gulp.task 'build', gulp.series [
   gulp.parallel [
     'frontend'
     'assets'
+    'css'
   ]
 ]
 
@@ -64,7 +52,17 @@ gulp.task 'watch', (done) ->
     'assets/**/*'
   ], gulp.series ['build']
 
+gulp.task 'serve', ->
+  gulp
+    .src 'build'
+    .pipe webserver
+      livereload: true,
+      open: true
+
 gulp.task 'develop', gulp.series [
   'build'
-  'watch'
+  gulp.parallel [
+    'watch'
+    'serve'
+  ]
 ]
