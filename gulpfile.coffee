@@ -21,9 +21,6 @@ notify = (error) =>
     file = error.filename.split('/')
     message += file[file.length-1]
 
-  if error.lineNumber
-    message += '\nOn Line: ' + error.lineNumber;
-
   notifier.notify title: title, message: message
 
 gulp.task 'assets', =>
@@ -76,7 +73,8 @@ gulp.task 'serve', ->
     .src 'build'
     .pipe webserver
       livereload: true,
-      open: true
+      open: 'http://localhost:8000'
+      host: '0.0.0.0' # ifconfig search for en0 inet
 
 gulp.task 'develop', gulp.series [
   'build'

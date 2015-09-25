@@ -34,7 +34,9 @@
     "watchify": "^3.4.0"
   },
   "dependencies": {
+    "firebase": "^2.3.0",
     "react": "^0.14.0-rc1",
-    "react-dom": "^0.14.0-rc1"
+    "react-dom": "^0.14.0-rc1",
+    "reactfire": "^0.4.0"
   }
 }
