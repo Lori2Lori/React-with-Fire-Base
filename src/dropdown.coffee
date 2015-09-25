@@ -10,6 +10,9 @@ module.exports = class Dropdown extends React.Component
   constructor: ->
     @state = open : false
 
+  handleItemClick: (item) =>
+    console.log item
+
   render: ->
     console.log "render"
     <div className = "dropdown">
@@ -24,7 +27,11 @@ module.exports = class Dropdown extends React.Component
         }>
         {
           for item, index in @props.items
-            <ListItem key = {index} item = { item }/>
+            <ListItem
+              key = {index}
+              item = { item }
+              whenItemClicked={@handleItemClick}
+            />
         }
       </ul>
     </div>
