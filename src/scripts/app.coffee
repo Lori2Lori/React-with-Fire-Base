@@ -2,6 +2,8 @@ React     = require 'react'
 RDOM      = require 'react-dom'
 ReactFire = require 'reactfire'
 Firebase  = require 'firebase'
+Form      = require './Form'
+List      = require './List'
 
 db        = new Firebase "https://incandescent-torch-1275.firebaseio.com/"
 
@@ -9,47 +11,27 @@ items     = db.child 'items'
 
 class Hello extends React.Component
   render: ->
-    <div>
-      <h1 className="red">
-        Hello!
-      </h1>
-      <form
-        onSubmit = { (event) =>
-          event.preventDefault()
-          unless @refs.text.value.trim() is ''
-            items.push @refs.text.value
-            @refs.text.value = ''
-        }
-      >
-        <input type="text" ref='text'/>
-        <input type="submit" value='click'/>
-        <button
-          onClick = { =>
-            items.set null
+    <div className="row panel panel default">
+      <div className="col-md-8 col-md-offset-2">
+        <h2 className="text-center">
+          Messenger
+        </h2>
+
+        <Form
+          onSubmit = { (value) => items.push value }
+          onClear = { => do items.remove }
+        />
+
+        <List
+          items = { @state.items }
+          onClear = { (name) =>
+            items
+              .child name
+              .remove()
           }
-        >
-          clear
-        </button>
-      </form>
-      <ul>
-        {
-          for key, value of @state.items
-            do =>
-              name = key
-              <li key={key}>
-                {value}
-                <button
-                  onClick = { =>
-                    items
-                      .child name
-                      .remove()
-                  }
-                >
-                  delete
-                </button>
-              </li>
-        }
-      </ul>
+        />
+
+      </div>
     </div>
 
   constructor: ->
