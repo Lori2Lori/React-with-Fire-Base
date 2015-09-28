@@ -4,6 +4,7 @@ ReactFire = require 'reactfire'
 Firebase  = require 'firebase'
 Form      = require './Form'
 List      = require './List'
+Clear     = require './Clear'
 
 db        = new Firebase "https://incandescent-torch-1275.firebaseio.com/"
 
@@ -14,12 +15,11 @@ class Hello extends React.Component
     <div className="row panel panel default">
       <div className="col-md-8 col-md-offset-2">
         <h2 className="text-center">
-          Messenger
+          TODO List
         </h2>
 
         <Form
           onSubmit = { (value) => items.push value }
-          onClear = { => do items.remove }
         />
 
         <List
@@ -29,6 +29,10 @@ class Hello extends React.Component
               .child name
               .remove()
           }
+        />
+        
+        <Clear
+          onClear = { => do items.remove }
         />
 
       </div>

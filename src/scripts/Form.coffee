@@ -11,12 +11,19 @@ module.exports = class Form extends React.Component
             @refs.text.value = ''
         }
       >
-        <input type="text" ref='text'/>
-        <input type="submit" value='click'/>
-        <button
-          onClick = @props.onClear
-        >
-          clear
-        </button>
+        <div className="input-group">
+          <input
+            type="text"
+            className="form-control"
+            ref='text'/>
+
+          <span className="input-group-btn">
+            <input
+              className="btn btn-default"
+              type="submit"
+              value='add'/>
+          </span>
+          
+        </div>
       </form>
     </div>

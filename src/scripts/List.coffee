@@ -9,7 +9,8 @@ module.exports = class Form extends React.Component
               name = key
               <li key={key}>
                 {value}
-                <button onClick = { => @props.onClear name } >
+                <button className="btn btn-default"
+                  onClick = { => @props.onClear name } >
                   delete
                 </button>
               </li>
