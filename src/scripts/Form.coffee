@@ -23,7 +23,7 @@ module.exports = class Form extends React.Component
               type="submit"
               value='add'/>
           </span>
-          
+
         </div>
       </form>
     </div>
