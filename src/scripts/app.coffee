@@ -30,11 +30,7 @@ class Hello extends React.Component
               .remove()
           }
         />
-
-        <Clear
-          onClear = { => do items.remove }
-        />
-
+        <Clear onClear = { => do items.remove } />
       </div>
     </div>
 
