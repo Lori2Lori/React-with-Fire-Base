@@ -1,9 +1,9 @@
 React = require 'react'
 
-module.exports = class Clear extends React.Component
+module.exports = class ClearAll extends React.Component
   render: ->
     <button className="btn btn-danger"
-      onClick = @props.onClear
+      onClick = @props.onClearAll
     >
       clear all
     </button>

@@ -4,7 +4,7 @@ ReactFire = require 'reactfire'
 Firebase  = require 'firebase'
 Form      = require './Form'
 List      = require './List'
-Clear     = require './Clear'
+ClearAll  = require './ClearAll'
 
 db        = new Firebase "https://incandescent-torch-1275.firebaseio.com/"
 
@@ -21,16 +21,23 @@ class Hello extends React.Component
         <Form
           onSubmit = { (value) => items.push value }
         />
+        <div className={
+          "content #{if @state.loaded then 'loaded' else ''}"
+        }>
+        <hr/>
 
-        <List
-          items = { @state.items }
-          onClear = { (name) =>
-            items
-              .child name
-              .remove()
-          }
-        />
-        <Clear onClear = { => do items.remove } />
+          <List
+            items = { @state.items }
+            onClear = { (name) =>
+              items
+                .child name
+                .remove()
+            }
+            onClearAll = { => do items.remove }          />
+        </div>
+
+        <ClearAll onClearAll = { => do items.remove } />
+
       </div>
     </div>
 
@@ -40,7 +47,7 @@ class Hello extends React.Component
   componentWillMount: ->
     items
       .on 'value', (snapshot) =>
-        @setState items: snapshot.val()
+        @setState items: snapshot.val(), loaded: true
 
 element = React.createElement Hello
 RDOM.render element, document.querySelector '.container'

@@ -21,6 +21,9 @@ notify = (error) =>
     file = error.filename.split('/')
     message += file[file.length-1]
 
+  if error.lineNumber
+    message += '\nOn Line: ' + error.lineNumber;
+
   notifier.notify title: title, message: message
 
 gulp.task 'assets', =>
