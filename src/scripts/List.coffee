@@ -20,6 +20,5 @@ module.exports = class Form extends React.Component
                   <span className="glyphicon glyphicon-remove" />
                 </button>
               </li>
-
       }
     </ul>

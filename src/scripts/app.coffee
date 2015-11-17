@@ -13,6 +13,14 @@ items     = db.child 'items'
 class Hello extends React.Component
   render: ->
     <div className="row panel panel default">
+      <nav className="navbar navbar-default">
+        <div className="container-fluid">
+          <ul className="nav navbar-nav">
+            <li className="active"><a href="#">TODO LIST</a></li>
+            <li><a href="#">ABOUT THIS APP</a></li>
+          </ul>
+        </div>
+      </nav>
       <div className="col-md-8 col-md-offset-2">
         <h2 className="text-center">
           TODO List
