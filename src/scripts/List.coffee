@@ -12,7 +12,7 @@ module.exports = class Form extends React.Component
             do =>
               name = key
               <li key={key}>
-                <input type='checkbox', class='mycheckbox'/>
+                <input type='checkbox', className='mycheckbox'/>
                 {value}
 
                 <button className="btn btn-link"

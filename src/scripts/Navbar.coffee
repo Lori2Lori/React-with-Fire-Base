@@ -1,5 +1,4 @@
 React = require 'react'
-RDOM  = require 'react-dom'
 
 module.exports = class Navbar extends React.Component
   render: ->
@@ -8,15 +7,18 @@ module.exports = class Navbar extends React.Component
 
         <div className='navbar-header'>
           <button
+            onClick = { => @setState collapsed: not @state.collapsed }
             type='button'
             className='navbar-toggle collapsed'
-            dataToggle='collapse'
-            dataTarget='#main_navbar'
             ariaExpanded='false'
-          >OPEN</button>
+          ><i className="fa fa-bars"></i></button>
         </div>
+
         <div
-          className='collapse navbar-collapse'
+          className = { [
+            'navbar-collapse'
+            'collapse' if @state.collapsed
+          ].join ' ' }
           id='main_navbar'>
           <ul className="nav navbar-nav">
             <li><a href="#">TODO LIST</a></li>
@@ -27,5 +29,5 @@ module.exports = class Navbar extends React.Component
       </div>
     </nav>
 
-element = React.createElement Navbar
-RDOM.render element, document.querySelector '.container'
+  constructor: ->
+    @state = collapsed: true
