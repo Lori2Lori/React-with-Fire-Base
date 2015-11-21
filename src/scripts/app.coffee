@@ -43,6 +43,7 @@ class Hello extends React.Component
         <ClearAll onClearAll = { => do items.remove }/>
 
       </div>
+
     </div>
 
   constructor: ->

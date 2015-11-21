@@ -1,33 +1,36 @@
-React = require 'react'
+React     = require 'react'
+Collapse  = require 'react-collapse'
+Links     = require './Links'
 
 module.exports = class Navbar extends React.Component
   render: ->
-    <nav className="navbar navbar-default">
-      <div className="container-fluid">
-
-        <div className='navbar-header'>
-          <button
-            onClick = { => @setState collapsed: not @state.collapsed }
-            type='button'
-            className='navbar-toggle collapsed'
-            ariaExpanded='false'
-          ><i className="fa fa-bars"></i></button>
+    <div>
+      <nav className="navbar navbar-default active hidden-xs">
+        <div className="container-fluid">
+          <Links/>
         </div>
+      </nav>
 
-        <div
-          className = { [
-            'navbar-collapse'
-            'collapse' if @state.collapsed
-          ].join ' ' }
-          id='main_navbar'>
-          <ul className="nav navbar-nav">
-            <li><a href="#">TODO LIST</a></li>
-            <li><a href="#">ABOUT THIS APP</a></li>
-          </ul>
+      <nav className="navbar navbar-default visible-xs-block">
+        <div className="container-fluid">
+          <div className='navbar-header'>
+            <button
+              onClick = { => @setState opened: not @state.opened }
+              type='button'
+              className='navbar-toggle collapsed'
+              ariaExpanded='false'
+            ><i className="fa fa-bars"></i></button>
+          </div>
+          <Collapse isOpened = { @state.opened } >
+            <div className = 'navbar-collapse'
+              id='main_navbar'>
+              <Links/>
+            </div>
+          </Collapse>
         </div>
-
-      </div>
-    </nav>
+      </nav>
+      
+    </div>
 
   constructor: ->
-    @state = collapsed: true
+    @state = opened: false
